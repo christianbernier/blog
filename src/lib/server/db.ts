@@ -3,7 +3,9 @@ import { definePost } from './db.models';
 import { env } from './env';
 
 // Initialize database objects
-export const sequelize = new Sequelize(env.DB_URL || '');
+export const sequelize = new Sequelize(env.DB_URL || '', {
+  dialectModule: require('pg')
+});
 export const Post = definePost(sequelize);
 
 /**
