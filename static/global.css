@@ -1,0 +1,121 @@
+@import url('https://fonts.googleapis.com/css2?family=Hind:wght@300;400;700&family=Inter+Tight:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+
+:root {
+	--background: #e6e8e6;
+	--on-background: #3f403f;
+	--primary: #9fb8ad;
+	--on-primary: #2f3b2b;
+	--secondary: #ced0ce;
+	--on-secondary: #3f403f;
+
+	--margin-xs: 2px;
+	--margin-sm: 4px;
+	--margin-md: 6px;
+	--margin-lg: 8px;
+
+	--font-sm: 1rem;
+	--font-md: 1.2rem;
+	--font-lg: 1.3rem;
+
+	--font-thin: 300;
+	--font-bold: 700;
+
+	--topbar-height: 20px;
+}
+
+body {
+	padding: 0;
+	margin: 0;
+	font-family: 'Hind', sans-serif;
+	background-color: var(--background);
+	color: var(--on-background);
+}
+
+button {
+	background-color: var(--primary);
+	color: var(--on-primary);
+	font-weight: var(--font-bold);
+	font-size: var(--font-sm);
+	padding: var(--margin-md) var(--margin-lg);
+	border: var(--margin-xs) solid var(--on-primary);
+	border-radius: var(--margin-sm);
+	box-shadow: var(--margin-xs) var(--margin-xs) 0 var(--on-secondary);
+}
+
+table {
+	width: 100%;
+}
+
+th {
+	text-align: left;
+	font-size: var(--font-lg);
+}
+
+td {
+	font-size: var(--font-md);
+}
+
+a {
+	color: var(--on-primary);
+}
+
+label,
+input,
+textarea {
+	font-size: var(--font-md);
+}
+
+input,
+textarea {
+	background-color: var(--secondary);
+	border: var(--margin-xs) solid var(--on-secondary);
+	border-radius: var(--margin-sm);
+	padding: var(--margin-xs) var(--margin-sm);
+}
+
+input {
+	margin-bottom: var(--margin-lg);
+}
+
+textarea {
+	aspect-ratio: 2.5;
+	width: 60%;
+}
+
+@-webkit-keyframes rotating /* Safari and Chrome */ {
+	from {
+		-webkit-transform: rotate(0deg);
+		-o-transform: rotate(0deg);
+		transform: rotate(0deg);
+	}
+	to {
+		-webkit-transform: rotate(360deg);
+		-o-transform: rotate(360deg);
+		transform: rotate(360deg);
+	}
+}
+
+@keyframes rotating {
+	from {
+		-ms-transform: rotate(0deg);
+		-moz-transform: rotate(0deg);
+		-webkit-transform: rotate(0deg);
+		-o-transform: rotate(0deg);
+		transform: rotate(0deg);
+	}
+	to {
+		-ms-transform: rotate(360deg);
+		-moz-transform: rotate(360deg);
+		-webkit-transform: rotate(360deg);
+		-o-transform: rotate(360deg);
+		transform: rotate(360deg);
+	}
+}
+
+.rotating {
+	-webkit-animation: rotating 2s linear infinite;
+	-moz-animation: rotating 2s linear infinite;
+	-ms-animation: rotating 2s linear infinite;
+	-o-animation: rotating 2s linear infinite;
+	animation: rotating 2s linear infinite;
+}
