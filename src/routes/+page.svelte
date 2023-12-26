@@ -32,6 +32,14 @@
 		gap: var(--margin-xl);
 	}
 
+	@media only screen and (max-width: 600px) {
+		.left {
+			height: fit-content;
+			flex-direction: column;
+			align-items: flex-start;
+		}
+	}
+
 	.profile {
 		width: 80px;
 		height: 80px;
