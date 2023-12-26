@@ -39,5 +39,8 @@
 
 	img {
 		max-width: 80%;
+		border: 4px solid var(--on-background);
+		border-radius: var(--margin-md);
+		overflow: hidden;
 	}
 </style>

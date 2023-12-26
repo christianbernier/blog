@@ -13,9 +13,10 @@
 		flex-direction: row;
 		justify-content: space-between;
 		align-items: center;
+		padding: var(--margin-lg) 0;
 	}
 
 	h1 {
-		margin-bottom: 0;
+		margin: 0;
 	}
 </style>

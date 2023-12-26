@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Hind:wght@300;400;700&family=Inter+Tight:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Averia+Libre:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Hind:wght@300;400;700&family=Inter+Tight:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Rubik+Doodle+Shadow&display=swap');
 
 :root {
 	--background: #e6e8e6;
@@ -12,10 +12,12 @@
 	--margin-sm: 4px;
 	--margin-md: 6px;
 	--margin-lg: 8px;
+	--margin-xl: 16px;
 
 	--font-sm: 1rem;
 	--font-md: 1.2rem;
 	--font-lg: 1.3rem;
+	--font-xl: 4rem;
 
 	--font-thin: 300;
 	--font-bold: 700;
