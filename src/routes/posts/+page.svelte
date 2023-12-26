@@ -6,19 +6,24 @@
 </script>
 
 <Header title="Posts" />
-<table>
-	<thead>
-		<th>Title</th>
-		<th>Date</th>
-	</thead>
-	{#await data.posts then posts}
-		{#each posts as post}
-			<tr>
-				<td>
-					<a href={`/posts/${post.id}`}>{post.title}</a>
-				</td>
-				<td>{getPrettyDateString(post.published_on)}</td>
-			</tr>
-		{/each}
-	{/await}
-</table>
+
+{#await data.posts then posts}
+	{#if posts.length > 0}
+		<table>
+			<thead>
+				<th>Title</th>
+				<th>Date</th>
+			</thead>
+			{#each posts as post}
+				<tr>
+					<td>
+						<a href={`/posts/${post.id}`}>{post.title}</a>
+					</td>
+					<td>{getPrettyDateString(post.published_on)}</td>
+				</tr>
+			{/each}
+		</table>
+	{:else}
+		<p class="no-posts">No posts</p>
+	{/if}
+{/await}

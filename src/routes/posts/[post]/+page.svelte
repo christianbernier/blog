@@ -7,5 +7,10 @@
 {#await data.post}
 	<Loader />
 {:then post}
-	<Post title={post.title} dateString={post.published_on} content={post.content} />
+	<Post
+		title={post.title}
+		dateString={post.published_on}
+		caption={post.caption}
+		imageLocation={post.image_location}
+	/>
 {/await}

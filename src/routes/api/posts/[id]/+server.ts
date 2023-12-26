@@ -22,11 +22,11 @@ export async function GET({ params }) {
 }
 
 export async function PUT({ params, request }) {
-	const { title, published_on, content } = await request.json();
+	const { title, published_on, caption } = await request.json();
 	await verifyPostExists(params.id);
 	const queryResult = await sequelize.query(`
     UPDATE posts
-    SET title='${title}', published_on='${published_on}', content='${content}'
+    SET title='${title}', published_on='${published_on}', caption='${caption}'
     WHERE id='${params.id}';
   `);
 	return json(queryResult[0]);

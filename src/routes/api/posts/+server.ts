@@ -8,7 +8,7 @@ export async function GET() {
 }
 
 export async function POST({ request }) {
-	const { id, title, published_on, content } = await request.json();
+	const { id, title, published_on, caption, imageLocation } = await request.json();
 	const allPostIds = (await sequelize.query('SELECT id FROM posts')) as [Post[], unknown];
 
 	if (allPostIds[0].some((post) => post.id === id)) {
@@ -18,8 +18,8 @@ export async function POST({ request }) {
 	}
 
 	const queryResult = await sequelize.query(`
-  INSERT INTO posts (id,title,published_on,content)
-  VALUES ( '${id}', '${title}', '${published_on}', '${content}' )
+  INSERT INTO posts (id,title,published_on,caption,image_location)
+  VALUES ( '${id}', '${title}', '${published_on}', '${caption}', '${imageLocation}' )
   `);
 	return json(queryResult[0]);
 }

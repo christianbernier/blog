@@ -21,17 +21,17 @@
 	};
 </script>
 
-<div id="posts-container">
-	<Header title="Posts">
-		<Button icon={faPlus} text="New" onClick={() => (location.href = '/edit/new')} />
-	</Header>
-	<table>
-		<thead>
-			<th>Title</th>
-			<th>Published Date</th>
-			<th>Actions</th>
-		</thead>
-		{#await data.posts then posts}
+<Header title="Posts">
+	<Button icon={faPlus} text="New" onClick={() => (location.href = '/edit/new')} />
+</Header>
+{#await data.posts then posts}
+	{#if posts.length > 0}
+		<table>
+			<thead>
+				<th>Title</th>
+				<th>Published Date</th>
+				<th>Actions</th>
+			</thead>
 			{#each posts as post}
 				<tr>
 					<td>
@@ -45,6 +45,8 @@
 					</td>
 				</tr>
 			{/each}
-		{/await}
-	</table>
-</div>
+		</table>
+	{:else}
+		<p class="no-posts">No posts</p>
+	{/if}
+{/await}

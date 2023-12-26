@@ -5,7 +5,8 @@ export type Post = {
 	id: string;
 	title: string;
 	published_on: string; // YYYY-MM-DD
-	content: string;
+	caption: string;
+	image_location: string;
 };
 
 // For parsing from the database
@@ -26,7 +27,11 @@ export const definePost = (sequelize: Sequelize) => {
 				type: DataTypes.DATEONLY,
 				allowNull: false,
 			},
-			content: {
+			caption: {
+				type: DataTypes.STRING,
+				allowNull: false,
+			},
+			image_location: {
 				type: DataTypes.STRING,
 				allowNull: false,
 			},

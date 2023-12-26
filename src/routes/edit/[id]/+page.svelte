@@ -3,14 +3,13 @@
 	import Button from '$lib/Button.svelte';
 	import Header from '$lib/Header.svelte';
 	import Loader from '$lib/Loader.svelte';
-	import Post from '$lib/Post.svelte';
 	import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 
 	export let data;
 	let currentPost = {
 		title: undefined,
 		published_on: undefined,
-		content: undefined,
+		caption: undefined,
 	};
 
 	$: !currentPost.title &&
@@ -24,23 +23,21 @@
 </Header>
 
 {#await data.streamed.post}
-	<Loader/>
+	<Loader />
 {:then}
 	<form method="POST">
-		<label for="title">Title</label>
-		<input name="title" type="text" bind:value={currentPost.title} />
-		<br />
-		<label for="published">Published on</label>
-		<input name="published" type="date" bind:value={currentPost.published_on} />
-		<br />
-		<textarea name="content" bind:value={currentPost.content}></textarea>
-		<br />
+		<div class="form-input">
+			<label for="title">Title</label>
+			<input name="title" type="text" required bind:value={currentPost.title} />
+		</div>
+		<div class="form-input">
+			<label for="published">Published on</label>
+			<input name="published" type="date" required bind:value={currentPost.published_on} />
+		</div>
+		<div class="form-input">
+			<label for="caption">Caption</label>
+			<textarea name="caption" required bind:value={currentPost.caption}></textarea>
+		</div>
 		<Button icon={faPaperPlane} text="Publish" />
 	</form>
-	<hr />
-	<Post
-		title={currentPost.title || ''}
-		dateString={currentPost.published_on || ''}
-		content={currentPost.content || ''}
-	/>
 {/await}

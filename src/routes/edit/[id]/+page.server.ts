@@ -14,14 +14,14 @@ export const actions = {
 		const id = params.id;
 		const title = data.get('title');
 		const published_on = data.get('published');
-		const content = data.get('content');
+		const caption = data.get('caption');
 
 		await fetch(`/api/posts/${id}`, {
 			method: 'PUT',
 			body: JSON.stringify({
 				title,
 				published_on,
-				content,
+				caption,
 			}),
 		});
 	},

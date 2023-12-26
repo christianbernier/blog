@@ -5,18 +5,28 @@
 
 	export let title: string;
 	export let dateString: string;
-	export let content: string;
+	export let caption: string;
+	export let imageLocation: string | undefined;
 
 	$: date = getPrettyDateString(dateString);
 </script>
 
-<Header {title}>
-	<Back url="/posts" />
-</Header>
-<p class="date">{date}</p>
-{@html content}
+<div class="post">
+	<Header {title}>
+		<Back url="/posts" />
+	</Header>
+	<p class="date">{date}</p>
+	{#if imageLocation}
+		<img src={imageLocation} alt={caption} />
+	{/if}
+	<p class="caption">{caption}</p>
+</div>
 
 <style>
+	.post {
+		margin-bottom: 100px;
+	}
+
 	.date {
 		font-style: italic;
 		margin-top: 0;
@@ -25,5 +35,9 @@
 
 	p {
 		font-size: var(--font-md);
+	}
+
+	img {
+		max-width: 80%;
 	}
 </style>

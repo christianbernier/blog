@@ -16,8 +16,14 @@
 
 	#content {
 		width: min(70vw, 1200px);
-		height: calc(100vh - 2 * var(--topbar-height));
+		min-height: calc(100vh - 2 * var(--topbar-height));
 		margin: 0 auto;
+	}
+
+	@media only screen and (max-width: 600px) {
+		#content {
+			width: 90vw;
+		}
 	}
 
 	#site-name {

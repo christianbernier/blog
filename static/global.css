@@ -53,33 +53,23 @@ th {
 
 td {
 	font-size: var(--font-md);
+	vertical-align: top;
+}
+
+th:first-of-type,
+td:first-of-type {
+	width: 70%;
+}
+
+.no-posts {
+	width: 100%;
+	text-align: center;
+	font-size: var(--font-md);
+	font-weight: var(--font-bold);
 }
 
 a {
 	color: var(--on-primary);
-}
-
-label,
-input,
-textarea {
-	font-size: var(--font-md);
-}
-
-input,
-textarea {
-	background-color: var(--secondary);
-	border: var(--margin-xs) solid var(--on-secondary);
-	border-radius: var(--margin-sm);
-	padding: var(--margin-xs) var(--margin-sm);
-}
-
-input {
-	margin-bottom: var(--margin-lg);
-}
-
-textarea {
-	aspect-ratio: 2.5;
-	width: 60%;
 }
 
 @-webkit-keyframes rotating /* Safari and Chrome */ {
