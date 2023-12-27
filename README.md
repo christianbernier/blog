@@ -1,6 +1,6 @@
 # blog
 
-This is a personal blog where I can upload a photo with a caption every day.
+This is a personal blog where I can upload a photo with a caption every day. The frontend is written in Svelte using SvelteKit. It uses a PostgreSQL database to store the posts, and a Cloudflare-based S3 service to store the image files.
 
 ## Development Server
 
