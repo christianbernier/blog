@@ -1,0 +1,5 @@
+export enum PostState {
+	EDITING = 'EDITING',
+	COMPRESSING = 'COMPRESSING',
+	UPLOADING = 'UPLOADING',
+}

@@ -35,7 +35,7 @@
 	}
 
 	#site-name {
-		font-family: "Averia Libre";
+		font-family: 'Averia Libre';
 		cursor: pointer;
 	}
 </style>

@@ -34,6 +34,7 @@
 	"dependencies": {
 		"@fortawesome/free-solid-svg-icons": "^6.5.1",
 		"aws-sdk": "^2.1525.0",
+		"browser-image-compression": "^2.0.2",
 		"dotenv": "^16.3.1",
 		"pg": "^8.11.3",
 		"pg-hstore": "^2.3.4",

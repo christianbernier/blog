@@ -47,7 +47,7 @@
 	}
 
 	.welcome {
-		font-family: "Rubik Doodle Shadow";
+		font-family: 'Rubik Doodle Shadow';
 		font-size: var(--font-xl);
 		margin: 0;
 	}
