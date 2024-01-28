@@ -74,6 +74,10 @@ a {
 	color: var(--on-primary);
 }
 
+.invisible {
+	visibility: hidden;
+}
+
 @-webkit-keyframes rotating /* Safari and Chrome */ {
 	from {
 		-webkit-transform: rotate(0deg);

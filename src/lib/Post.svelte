@@ -2,6 +2,7 @@
 	import { getPrettyDateString } from './date';
 	import Header from './Header.svelte';
 	import Back from './Back.svelte';
+	import Loader from './Loader.svelte';
 
 	export let title: string;
 	export let dateString: string;
@@ -9,6 +10,7 @@
 	export let imageLocation: string | undefined;
 
 	$: date = getPrettyDateString(dateString);
+	$: imageLoaded = false;
 </script>
 
 <div class="post">
@@ -17,7 +19,15 @@
 	</Header>
 	<p class="date">{date}</p>
 	{#if imageLocation}
-		<img src={imageLocation} alt={caption} />
+		<img
+			src={imageLocation}
+			alt={caption}
+			class={imageLoaded ? "" : "invisible"}
+			on:load={() => imageLoaded = true}
+		/>
+		{#if !imageLoaded}
+			<Loader description="Loading..."/>
+		{/if}
 	{/if}
 	<p class="caption">{caption}</p>
 </div>
