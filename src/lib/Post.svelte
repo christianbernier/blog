@@ -3,6 +3,7 @@
 	import Header from './Header.svelte';
 	import Back from './Back.svelte';
 	import Loader from './Loader.svelte';
+	import { onMount } from 'svelte';
 
 	export let title: string;
 	export let dateString: string;
@@ -11,6 +12,17 @@
 
 	$: date = getPrettyDateString(dateString);
 	$: imageLoaded = false;
+
+	onMount(() => {
+		const imageElement = document.querySelector('#post__image') as HTMLImageElement;
+		if (!imageElement) {
+			return;
+		}
+
+		if (imageElement.complete) {
+			imageLoaded = true;
+		}
+	});
 </script>
 
 <div class="post">
@@ -20,6 +32,7 @@
 	<p class="date">{date}</p>
 	{#if imageLocation}
 		<img
+			id="post__image"
 			src={imageLocation}
 			alt={caption}
 			class={imageLoaded ? '' : 'invisible'}
