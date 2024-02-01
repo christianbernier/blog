@@ -1,3 +1,4 @@
+import { env } from '$lib/server/env.js';
 import { s3 } from '$lib/server/s3';
 import { error } from '@sveltejs/kit';
 import { ReadableWebToNodeStream } from 'readable-web-to-node-stream';
@@ -13,7 +14,7 @@ export const actions = {
 
 		const file = image as File;
 		const stream = new ReadableWebToNodeStream(file.stream());
-		const imageKey = `${id}_${file.name}`;
+		const imageKey = `${env.SITE_KEY || error}/${id}`;
 		try {
 			await s3
 				.upload({

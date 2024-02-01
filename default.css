@@ -1,0 +1,13 @@
+:root {
+	--background: #ffffff;
+	--on-background: #000000;
+	--primary: #ff0000;
+	--on-primary: #ffffff;
+	--secondary: #00ff00;
+	--on-secondary: #ffffff;
+	--top-bar-color: #0000ff;
+
+	--font-default: sans-serif;
+	--font-welcome: sans-serif;
+	--font-site-name: sans-serif;
+}

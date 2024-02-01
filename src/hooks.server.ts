@@ -1,8 +1,12 @@
 import { connectToDB } from '$lib/server/db';
 import { env } from '$lib/server/env';
+import { getSiteConfig } from '$lib/server/site';
 import type { Handle } from '@sveltejs/kit';
 
 export const handle = (async ({ event, resolve }) => {
+	event.locals.config = await getSiteConfig();
+	event.locals.siteKey = env.SITE_KEY || 'default';
+
 	// Database
 	await connectToDB();
 

@@ -1,15 +1,23 @@
 <script lang="ts">
 	import { faCamera } from '@fortawesome/free-solid-svg-icons';
-	import Fa from 'svelte-fa/src/fa.svelte';
+	import Fa from 'svelte-fa';
+	export let data;
 </script>
 
+<svelte:head>
+	<title>{data.config.site.title}</title>
+	<link
+		rel="stylesheet"
+		href={`https://pub-1844ca77bffb49e2a458b2ed97135420.r2.dev/${data.siteKey}.css`}
+	/>
+</svelte:head>
 <div id="top-bar"></div>
 <div id="content">
 	<!-- svelte-ignore a11y-click-events-have-key-events -->
 	<!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
 	<h2 id="site-name" on:click={() => (location.href = '/')}>
-		<Fa icon={faCamera} color="#2F3B2B" />
-		Christian IRL
+		<Fa icon={faCamera} />
+		{data.config.site.title}
 	</h2>
 	<slot />
 </div>
@@ -18,7 +26,7 @@
 	#top-bar {
 		height: var(--topbar-height);
 		width: 100vw;
-		background-color: #475841;
+		background-color: var(--top-bar-color);
 		margin-bottom: var(--topbar-height);
 	}
 
@@ -35,7 +43,7 @@
 	}
 
 	#site-name {
-		font-family: 'Averia Libre';
+		font-family: var(--font-site-name);
 		cursor: pointer;
 	}
 </style>

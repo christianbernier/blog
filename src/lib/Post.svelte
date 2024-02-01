@@ -22,11 +22,11 @@
 		<img
 			src={imageLocation}
 			alt={caption}
-			class={imageLoaded ? "" : "invisible"}
-			on:load={() => imageLoaded = true}
+			class={imageLoaded ? '' : 'invisible'}
+			on:load={() => (imageLoaded = true)}
 		/>
 		{#if !imageLoaded}
-			<Loader description="Loading..."/>
+			<Loader description="Loading..." />
 		{/if}
 	{/if}
 	<p class="caption">{caption}</p>

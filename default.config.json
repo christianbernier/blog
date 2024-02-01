@@ -1,0 +1,10 @@
+{
+	"site": {
+		"title": "Site Title"
+	},
+	"homepage": {
+		"header": "placeholder",
+		"description": "description of site",
+		"button": "button text"
+	}
+}

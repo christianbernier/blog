@@ -1,21 +1,26 @@
 <script>
 	import Button from '$lib/Button.svelte';
-	import Profile from '$lib/assets/profile.jpg';
 	import { faDoorOpen } from '@fortawesome/free-solid-svg-icons';
+	export let data;
 </script>
 
 <div class="container">
 	<div class="left">
-		<img class="profile" src={Profile} alt="Christian Bernier" />
-		<h1 class="welcome">Welcome!</h1>
+		<img
+			class="profile"
+			src={`https://pub-1844ca77bffb49e2a458b2ed97135420.r2.dev/${data.siteKey}.profile.jpg`}
+			alt="Profile"
+		/>
+		<h1 class="welcome">{data.config.homepage.header}</h1>
 	</div>
 	<div class="right">
-		<p>
-			Christian IRL is a daily blog where I post a photo and brief caption about my activities every
-			day. Click the button below to see what I've posted. Let me know what you think!
-		</p>
+		<p>{data.config.homepage.description}</p>
 
-		<Button icon={faDoorOpen} text="Enter" onClick={() => (location.href = '/posts')} />
+		<Button
+			icon={faDoorOpen}
+			text={data.config.homepage.button}
+			onClick={() => (location.href = '/posts')}
+		/>
 	</div>
 </div>
 
@@ -47,7 +52,7 @@
 	}
 
 	.welcome {
-		font-family: 'Rubik Doodle Shadow';
+		font-family: var(--font-welcome);
 		font-size: var(--font-xl);
 		margin: 0;
 	}
