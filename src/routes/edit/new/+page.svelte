@@ -5,9 +5,10 @@
 	import Header from '$lib/Header.svelte';
 	import { deserialize } from '$app/forms';
 	import imageCompression from 'browser-image-compression';
-	import { PostState } from '$lib/post-state';
+	import { FormState } from '$lib/form-state';
 	import Loader from '$lib/Loader.svelte';
 	import type { EventHandler } from 'svelte/elements';
+	import ImageFormElement from '$lib/ImageFormElement.svelte';
 
 	const date = new Date().toISOString().slice(0, 10);
 	let currentPost = {
@@ -17,7 +18,7 @@
 		caption: `Caption`,
 	};
 
-	$: postState = PostState.EDITING;
+	$: formState = FormState.EDITING;
 
 	const submitPost: EventHandler<SubmitEvent, HTMLFormElement> = async (event) => {
 		if (!event.target) {
@@ -36,7 +37,7 @@
 			useWebWorker: true,
 		};
 
-		postState = PostState.COMPRESSING;
+		formState = FormState.COMPRESSING;
 		let compressedImage;
 		try {
 			compressedImage = await imageCompression(originalImage, options);
@@ -48,7 +49,7 @@
 		formData.delete('image');
 		formData.append('image', compressedImage);
 
-		postState = PostState.UPLOADING;
+		formState = FormState.UPLOADING;
 		const response = await fetch((event.target as EventTarget & HTMLFormElement).action, {
 			method: 'POST',
 			body: formData,
@@ -66,7 +67,7 @@
 	<Back url="/edit" />
 </Header>
 
-{#if postState === PostState.EDITING}
+{#if formState === FormState.EDITING}
 	<form method="POST" enctype="multipart/form-data" on:submit|preventDefault={submitPost}>
 		<div class="form-input">
 			<label for="id">ID</label>
@@ -80,17 +81,14 @@
 			<label for="published">Published on</label>
 			<input name="published" type="date" required bind:value={currentPost.published_on} />
 		</div>
-		<div class="form-input">
-			<label for="image">Image</label>
-			<input name="image" type="file" required />
-		</div>
+		<ImageFormElement name="image" label="Image" required={true} />
 		<div class="form-input">
 			<label for="caption">Caption</label>
 			<textarea name="caption" required bind:value={currentPost.caption}></textarea>
 		</div>
 		<Button icon={faPaperPlane} text="Publish" />
 	</form>
-{:else if postState === PostState.COMPRESSING}
+{:else if formState === FormState.COMPRESSING}
 	<Loader description="Compressing..." />
 {:else}
 	<Loader description="Uploading..." />

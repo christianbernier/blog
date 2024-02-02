@@ -11,3 +11,5 @@ vite.config.ts.timestamp-*
 .vscode
 christian-irl.config.json
 christian-irl.css
+test.config.json
+test.css

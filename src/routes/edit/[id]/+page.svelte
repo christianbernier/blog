@@ -9,6 +9,7 @@
 	let currentPost = {
 		title: undefined,
 		published_on: undefined,
+		image_location: undefined,
 		caption: undefined,
 	};
 
@@ -25,6 +26,7 @@
 {#await data.streamed.post}
 	<Loader />
 {:then}
+	<p class="form-input-help">Note: Images or post IDs cannot currently be edited.</p>
 	<form method="POST">
 		<div class="form-input">
 			<label for="title">Title</label>
@@ -34,6 +36,8 @@
 			<label for="published">Published on</label>
 			<input name="published" type="date" required bind:value={currentPost.published_on} />
 		</div>
+		<!-- svelte-ignore a11y-missing-attribute -->
+		<img id="post__image" src={currentPost.image_location} />
 		<div class="form-input">
 			<label for="caption">Caption</label>
 			<textarea name="caption" required bind:value={currentPost.caption}></textarea>

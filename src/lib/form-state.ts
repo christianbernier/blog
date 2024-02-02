@@ -1,4 +1,4 @@
-export enum PostState {
+export enum FormState {
 	EDITING = 'EDITING',
 	COMPRESSING = 'COMPRESSING',
 	UPLOADING = 'UPLOADING',
