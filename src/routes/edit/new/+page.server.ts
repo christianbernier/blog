@@ -1,6 +1,6 @@
 import { env } from '$lib/server/env.js';
 import { s3 } from '$lib/server/s3';
-import { error } from '@sveltejs/kit';
+import { error, type NumericRange } from '@sveltejs/kit';
 import { ReadableWebToNodeStream } from 'readable-web-to-node-stream';
 
 export const actions = {
@@ -14,7 +14,9 @@ export const actions = {
 
 		const file = image as File;
 		const stream = new ReadableWebToNodeStream(file.stream());
-		const imageKey = `${env.SITE_KEY || error}/${id}`;
+		const random = `${Math.random()}`.substring(2);
+		const imageKey = `${env.SITE_KEY || error}/${id}_${random}`;
+
 		try {
 			await s3
 				.upload({
@@ -31,7 +33,7 @@ export const actions = {
 		}
 		const imageLocation = `https://pub-0010a80c3ac14686bea0406aac7d1914.r2.dev/${imageKey}`;
 
-		await fetch(`/api/posts`, {
+		const response = await fetch(`/api/posts`, {
 			method: 'POST',
 			body: JSON.stringify({
 				id,
@@ -41,5 +43,9 @@ export const actions = {
 				imageLocation,
 			}),
 		});
+
+		if (!response.ok) {
+			error(response.status as NumericRange<400, 599>, await response.json());
+		}
 	},
 };

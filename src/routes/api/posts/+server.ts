@@ -1,5 +1,5 @@
-import { sequelize } from '$lib/server/db';
-import type { Post } from '$lib/server/db.models';
+import { Post, sequelize } from '$lib/server/db';
+import type { Post as PostType } from '$lib/server/db.models';
 import { error, json } from '@sveltejs/kit';
 
 export async function GET() {
@@ -9,7 +9,7 @@ export async function GET() {
 
 export async function POST({ request }) {
 	const { id, title, published_on, caption, imageLocation } = await request.json();
-	const allPostIds = (await sequelize.query('SELECT id FROM posts')) as [Post[], unknown];
+	const allPostIds = (await sequelize.query('SELECT id FROM posts')) as [PostType[], unknown];
 
 	if (allPostIds[0].some((post) => post.id === id)) {
 		error(400, {
@@ -17,9 +17,15 @@ export async function POST({ request }) {
 		});
 	}
 
-	const queryResult = await sequelize.query(`
-  INSERT INTO posts (id,title,published_on,caption,image_location)
-  VALUES ( '${id}', '${title}', '${published_on}', '${caption}', '${imageLocation}' )
-  `);
-	return json(queryResult[0]);
+	const newPost = {
+		id,
+		title,
+		published_on,
+		caption,
+		image_location: imageLocation,
+	};
+
+	await Post.create(newPost);
+
+	return json(newPost);
 }

@@ -12,7 +12,7 @@ export type Post = {
 // For parsing from the database
 export const definePost = (sequelize: Sequelize) => {
 	return sequelize.define(
-		'Post',
+		'post',
 		{
 			id: {
 				type: DataTypes.STRING,
@@ -36,6 +36,8 @@ export const definePost = (sequelize: Sequelize) => {
 				allowNull: false,
 			},
 		},
-		{},
+		{
+			timestamps: false,
+		},
 	);
 };

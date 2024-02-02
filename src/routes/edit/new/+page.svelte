@@ -3,7 +3,7 @@
 	import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 	import Button from '$lib/Button.svelte';
 	import Header from '$lib/Header.svelte';
-	import { deserialize } from '$app/forms';
+	import { applyAction, deserialize } from '$app/forms';
 	import imageCompression from 'browser-image-compression';
 	import { FormState } from '$lib/form-state';
 	import Loader from '$lib/Loader.svelte';
@@ -60,6 +60,8 @@
 		if (result.type === 'success') {
 			location.href = `/posts/${currentPost.id}`;
 		}
+
+		applyAction(result);
 	};
 </script>
 
