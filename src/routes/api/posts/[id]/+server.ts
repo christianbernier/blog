@@ -34,6 +34,38 @@ export async function PUT({ params, request }) {
 
 export async function DELETE({ params }) {
 	await verifyPostExists(params.id);
+
+	// Update links
+	const allPosts = (await sequelize.query('SELECT * FROM posts')) as [Post[], unknown];
+	const thisPost = allPosts[0].find((post) => post.id === params.id);
+	const previousId = thisPost?.previous_post;
+	const nextId = thisPost?.next_post;
+	if (previousId && nextId) {
+		await sequelize.query(`
+			UPDATE posts
+			SET next_post='${nextId}'
+			WHERE id='${previousId}';
+		`);
+
+		await sequelize.query(`
+			UPDATE posts
+			SET previous_post='${previousId}'
+			WHERE id='${nextId}';
+		`);
+	} else if (previousId && !nextId) {
+		await sequelize.query(`
+			UPDATE posts
+			SET next_post=NULL
+			WHERE id='${previousId}';
+		`);
+	} else if (!previousId && nextId) {
+		await sequelize.query(`
+			UPDATE posts
+			SET previous_post=NULL
+			WHERE id='${nextId}';
+		`);
+	}
+
 	const queryResult = await sequelize.query(`
     DELETE FROM posts
     WHERE id='${params.id}';

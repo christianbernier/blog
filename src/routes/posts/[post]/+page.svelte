@@ -12,5 +12,7 @@
 		dateString={post.published_on}
 		caption={post.caption}
 		imageLocation={post.image_location}
+		previousPost={post.previous_post}
+		nextPost={post.next_post}
 	/>
 {/await}

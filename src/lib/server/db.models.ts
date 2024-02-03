@@ -7,6 +7,8 @@ export type Post = {
 	published_on: string; // YYYY-MM-DD
 	caption: string;
 	image_location: string;
+	next_post?: string | null;
+	previous_post?: string | null;
 };
 
 // For parsing from the database
@@ -34,6 +36,14 @@ export const definePost = (sequelize: Sequelize) => {
 			image_location: {
 				type: DataTypes.STRING,
 				allowNull: false,
+			},
+			previous_post: {
+				type: DataTypes.STRING,
+				allowNull: true,
+			},
+			next_post: {
+				type: DataTypes.STRING,
+				allowNull: true,
 			},
 		},
 		{
